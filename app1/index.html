@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App 1</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div>
+      <h1>Social Media App Client #1</h1>
+      <button class="register-btn">Register</button>
+      <button class="login-btn">Login</button>
+    </div>
+    <form class="register-form">
+      <h2>Register</h2>
+      <input type="text" name="name" placeholder="Username" />
+      <input type="email" name="email" placeholder="Email" />
+      <input type="password" name="password" placeholder="Password" />
+      <button id="register-btn">Register</button>
+    </form>
+    <form class="login-form">
+      <h2>Login</h2>
+      <input type="email" name="email" placeholder="Email" />
+      <input type="password" name="password" placeholder="Password" />
+      <button id="login-btn">Login</button>
+    </form>
+    <form class="create-post-form">
+      <h2>Create a new post</h2>
+      <input type="text" name="image" placeholder="Image URL" />
+      <input type="text" name="title" placeholder="Title" />
+      <input type="text" name="description" placeholder="Description" />
+      <button id="post-btn">Create Post</button>
+    </form>
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
