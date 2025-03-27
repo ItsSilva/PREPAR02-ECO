@@ -7,30 +7,34 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div>
-      <h1>Social Media App Client #1</h1>
+    <h1>Social Media App Client #1</h1>
+    <div class="btns-container" style="display: block">
+      <h2>Welcome!</h2>
       <button class="register-btn">Register</button>
-      <button class="login-btn">Login</button>
+      <button class="screen-login-btn">Login</button>
     </div>
-    <form class="register-form">
+    <form class="register-form" style="display: none">
       <h2>Register</h2>
       <input type="text" name="name" placeholder="Username" />
       <input type="email" name="email" placeholder="Email" />
       <input type="password" name="password" placeholder="Password" />
       <button id="register-btn">Register</button>
+      <button class="back-btn">Back</button>
     </form>
-    <form class="login-form">
+    <form class="login-form" style="display: none">
       <h2>Login</h2>
       <input type="email" name="email" placeholder="Email" />
       <input type="password" name="password" placeholder="Password" />
       <button id="login-btn">Login</button>
+      <button class="back-btn">Back</button>
     </form>
-    <form class="create-post-form">
+    <form class="create-post-form" style="display: none">
       <h2>Create a new post</h2>
       <input type="text" name="image" placeholder="Image URL" />
       <input type="text" name="title" placeholder="Title" />
       <input type="text" name="description" placeholder="Description" />
       <button id="post-btn">Create Post</button>
+      <button class="back-btn">Back</button>
     </form>
     <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
     <script src="index.js"></script>
