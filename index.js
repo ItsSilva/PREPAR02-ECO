@@ -100,4 +100,43 @@ app.post("/posts", (req, res) => {
   io.emit("new-post", newPost);
 });
 
+//delete route for posts
+app.delete("/posts/:id", (req, res) => {
+  const postId = parseInt(req.params.id);
+
+  const postIndex = posts.findIndex((post) => post.id === postId);
+
+  if (postIndex === -1) {
+    return res.status(404).send({ message: "Post not found" });
+  }
+
+  const deletedPost = posts[postIndex];
+  posts.splice(postIndex, 1);
+
+  io.emit("deleted-post", deletedPost);
+
+  res.status(204).send();
+});
+
+//post route for like
+app.post("/posts/:id/like", (req, res) => {
+  const postId = parseInt(req.params.id);
+  const postIndex = posts.findIndex((post) => post.id === postId);
+
+  if (postIndex === -1) {
+    return res.status(404).send({ message: "Post not found" });
+  }
+
+  if (!posts[postIndex].likes) {
+    posts[postIndex].likes = 1;
+  } else {
+    posts[postIndex].likes++;
+  }
+
+  const updatedPost = posts[postIndex];
+  io.emit("liked-post", updatedPost);
+
+  res.status(200).json(updatedPost);
+});
+
 httpServer.listen(5050);
