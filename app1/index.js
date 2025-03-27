@@ -1,5 +1,50 @@
 const socket = io("http://localhost:5050", { path: "/rea-time" });
 
+// Navigation System
+document.addEventListener("DOMContentLoaded", () => {
+  const btnsContainer = document.querySelector(".btns-container");
+  const registerForm = document.querySelector(".register-form");
+  const loginForm = document.querySelector(".login-form");
+  const createPostForm = document.querySelector(".create-post-form");
+
+  const showMainScreen = () => {
+    btnsContainer.style.display = "block";
+    registerForm.style.display = "none";
+    loginForm.style.display = "none";
+    createPostForm.style.display = "none";
+  };
+
+  const navigateToRegister = () => {
+    btnsContainer.style.display = "none";
+    registerForm.style.display = "block";
+    loginForm.style.display = "none";
+    createPostForm.style.display = "none";
+  };
+
+  const navigateToLogin = () => {
+    btnsContainer.style.display = "none";
+    registerForm.style.display = "none";
+    loginForm.style.display = "block";
+    createPostForm.style.display = "none";
+  };
+
+  document
+    .querySelector(".register-btn")
+    .addEventListener("click", navigateToRegister);
+  document
+    .querySelector(".screen-login-btn")
+    .addEventListener("click", navigateToLogin);
+
+  document.querySelectorAll(".back-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      showMainScreen();
+    });
+  });
+
+  showMainScreen();
+});
+
 // Register User
 const registerUser = async (event) => {
   event.preventDefault();
@@ -26,13 +71,15 @@ const registerUser = async (event) => {
   if (response.ok) {
     socket.emit("new-user", data);
     alert("User registered successfully");
+    document.querySelector(".btns-container").style.display = "block";
+    document.querySelector(".register-form").style.display = "none";
   } else {
     alert(data.message);
   }
 };
 document.getElementById("register-btn").addEventListener("click", registerUser);
 
-//login User
+// Login User
 const loginUser = async (event) => {
   event.preventDefault();
 
@@ -55,13 +102,16 @@ const loginUser = async (event) => {
   const data = await response.json();
   if (response.ok) {
     alert("User logged in successfully");
+    document.querySelector(".btns-container").style.display = "none";
+    document.querySelector(".login-form").style.display = "none";
+    document.querySelector(".create-post-form").style.display = "block";
   } else {
     alert(data.message);
   }
 };
 document.getElementById("login-btn").addEventListener("click", loginUser);
 
-//Create Post
+// Create Post
 const createPost = async (event) => {
   event.preventDefault();
 
@@ -87,6 +137,7 @@ const createPost = async (event) => {
   if (response.ok) {
     socket.emit("new-post", data);
     alert("Post created successfully");
+    document.querySelector(".create-post-form").reset();
   } else {
     alert(data.message);
   }
