@@ -50,7 +50,6 @@ const postCard = async () => {
         </div>
         <div class="post-actions">
           <button class="delete-btn">Delete</button>
-          <button class="edit-btn">Edit</button>
         </div>
       `;
       postsContainer.appendChild(postCard);
